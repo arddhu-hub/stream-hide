@@ -7,5 +7,5 @@ private library path, user profile path, library ID and accidental data.json.
 Only the allowlisted plugin files were packaged; no vault or image library was copied.
 
 No new UI inspection was performed: Arddhu will check the visual behavior.
-GitHub Actions and the community submission have not been executed remotely.
+GitHub Actions passed on Linux and Windows on 2026-11-25. The source repository is public under arddhu-hub. Release asset upload and the Obsidian community submission remain pending.
 This records local checks, not acceptance by the Obsidian reviewers.
