@@ -4,6 +4,8 @@ on:
     branches: [main]
     tags: ['*']
   pull_request:
+  release:
+    types: [published]
 permissions:
   contents: read
 jobs:
@@ -29,7 +31,7 @@ jobs:
             manifest.json
             styles.css
   release:
-    if: startsWith(github.ref, 'refs/tags/')
+    if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'release'
     needs: check
     runs-on: ubuntu-latest
     permissions:
@@ -39,12 +41,16 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: plugin-Windows
-      - name: Create draft release
+      - name: Attach tested release assets
         env:
           GH_TOKEN: ${{ github.token }}
-          TAG: ${{ github.ref_name }}
+          TAG: ${{ github.event.release.tag_name || github.ref_name }}
         shell: bash
         run: |
           files=(main.js manifest.json)
           if [ -f styles.css ]; then files+=(styles.css); fi
-          gh release create "$TAG" "${files[@]}" --draft --verify-tag --title "$TAG" --notes "See CHANGELOG.md for changes and README.md for installation and limitations."
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" "${files[@]}" --clobber
+          else
+            gh release create "$TAG" "${files[@]}" --draft --verify-tag --title "$TAG" --notes "See CHANGELOG.md for changes and README.md for installation and limitations."
+          fi
