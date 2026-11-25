@@ -1,0 +1,10 @@
+{
+  "id": "stream-hide",
+  "name": "Stream Hide",
+  "version": "1.0.0",
+  "minAppVersion": "1.15.1",
+  "description": "Toggle a separate list of hidden files and folders in the file explorer for streaming.",
+  "author": "Arddhu",
+  "isDesktopOnly": true,
+  "authorUrl": "https://github.com/arddhu-hub"
+}

@@ -1,0 +1,23 @@
+{
+  "name": "stream-hide",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "author": "Arddhu",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "node build.js",
+    "test": "node --test tests/*.test.js",
+    "check": "node scripts/check.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arddhu-hub/stream-hide.git"
+  },
+  "bugs": {
+    "url": "https://github.com/arddhu-hub/stream-hide/issues"
+  },
+  "homepage": "https://github.com/arddhu-hub/stream-hide#readme"
+}
